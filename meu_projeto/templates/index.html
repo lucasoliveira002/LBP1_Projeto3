@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist de Musicas</title>
+</head>
+<body>
+    <h1>Sua Playlist</h1>
+    <form action="/add" method="post">
+        <input type="text" name="nome" placeholder="Nova Musica" required>
+        <input type="text" name="autor" placeholder="Nome do autor" required>
+        <input type="number" name="ano" placeholder="Ano lançamento" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for musica in playlist %}
+            <li>{{ musica.nome }} - {{ musica.autor }} - {{ musica.ano }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
