@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Página de Login</h1>
+
+    <!--Cria um formulario de login com o metodo POST-->
+    <form method="post">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Entrar</button>
+    </form>
+    <br>
+    <br>
+    <a href="/register" class="button">Não tem conta?</a>
+</body>
+</html>
