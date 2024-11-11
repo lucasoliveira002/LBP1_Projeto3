@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from controllers.auth_controller import login, register  # Importa as funções de login e registro
+from controllers.auth_controller import login, register, adicionar  # Importa as funções de login e registro
 
 app = Flask(__name__)
 app.secret_key = '12'
@@ -26,6 +26,13 @@ def home():
 def login_route():
     return login()  # Chama a função de login
 
+# rota de adicionar
+@app.route("/adicionar", methods=["GET", "POST"])
+def adicionar_route():
+    if request.method == "POST":
+        adicionar();
+    return render_template("adicionar.html")
+
 # Rota de cadastro
 @app.route("/register", methods=["GET", "POST"])
 def register_route():
@@ -39,6 +46,18 @@ def boas_vindas():
         return redirect(url_for("login_route"))
     
     return render_template("boas_vindas.html", username=username)
+
+@app.route("/lista", methods=['POST', 'GET'])
+def lista():
+    #{session["animal"]}
+    animal = session.get('animal')
+    data = session.get('data')
+    tipo = session.get('tipo')
+    return render_template("lista.html", animal=animal, data=data, tipo=tipo)
+    #if request.method == 'POST':
+        #session['animal'] = request.form['animal']
+        #session['tipo'] = request.form['tipo']
+        #session['data'] = request.form['data']
 
 if __name__ == "__main__":
     app.run(debug=True)

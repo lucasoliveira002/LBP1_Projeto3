@@ -4,6 +4,9 @@ from flask import request, session, redirect, url_for, render_template
 # Banco de dados simples para armazenar usuários
 users_db = {}
 
+# Banco de dados simples para armazenar animais
+animais_db = {}
+
 def login():
     if request.method == "POST":
         username = request.form.get("username")
@@ -38,3 +41,14 @@ def register():
         return redirect(url_for("login_route"))  # Redireciona para a página de login após o registro
     
     return render_template("register.html")  # Carrega o formulário de registro
+
+def adicionar():
+    if request.method == "POST":
+        animal = request.form.get("animal")
+        tipo = request.form.get("tipo")
+        data = request.form.get("data")
+        session["animal"] = animal
+
+        animais_db[animal] = tipo, data
+    
+    return render_template("adicionar.html")  # Carrega o formulário de registro
